@@ -14,8 +14,7 @@
 
   <modules>
     <module>customers-service</module>
-    <module>accounts-service</module>
-    <module>orders-module</module>
+    <module>orders-service</module>
     <module>customers-summary-service</module>
   </modules>
 
