@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -17,18 +18,23 @@ public class OrderServiceImpl implements OrderService {
 
   private RestTemplate restTemplate;
 
+  @Value("${services.orders.url}")
+  private String ordersServiceUrl;
+
+
   @Autowired
   public OrderServiceImpl(RestTemplate restTemplate) {
     Validate.notNull(restTemplate);
     this.restTemplate = restTemplate;
   }
 
+
   @Override
   public List<OrderInfo> getCustomerOrdersInfo(Integer customerId) {
     ParameterizedTypeReference<List<OrderInfo>> typeRef = new ParameterizedTypeReference<List<OrderInfo>>() {
     };
     ResponseEntity<List<OrderInfo>> rs = restTemplate
-        .exchange("http://localhost:8001/ordersService/api/v1/customers/{id}/orders",
+        .exchange(ordersServiceUrl + "/customers/{id}/orders",
             HttpMethod.GET,
             null, typeRef, customerId);
     List<OrderInfo> orders = rs.getBody();

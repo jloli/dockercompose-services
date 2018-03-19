@@ -2,7 +2,7 @@
 FROM openjdk:8-jdk-alpine
 
 #Expone el puerto donde va a atender el contenedor
-EXPOSE 8001
+EXPOSE 8002
 
 #Establece una variable para el momento de construir la imagen (la ruta del jar)
 ARG JAR_FILE

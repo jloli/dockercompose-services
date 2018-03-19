@@ -1,0 +1,20 @@
+version: '3'
+services:
+  summaryService:
+    image: summary-service:1.0-SNAPSHOT
+    depends_on:
+      - customersService
+      - ordersService
+    ports:
+      - "8000:8000"
+    links:
+      - customersService
+      - ordersService
+  customersService:
+    image: customers-service:1.0-SNAPSHOT
+    ports:
+      - "8001:8001"
+  ordersService:
+    image: orders-service:1.0-SNAPSHOT
+    ports:
+      - "8002:8002"
