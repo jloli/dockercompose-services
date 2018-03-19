@@ -1,2 +1,2 @@
-# springcloud-services
-Microservicios con SpringCloud de ejemplo
+# dockercompose-services
+Microservicios orquestados con docker-compose.
